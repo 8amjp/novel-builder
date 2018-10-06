@@ -1,0 +1,36 @@
+{
+  "name": "novel-builder",
+  "version": "0.0.1",
+  "description": "Web小説執筆補助ツール",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "build": "node build.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "config": {
+    "epub_title": "Title",
+    "epub_author": "Author",
+    "epub_publisher": "Publisher",
+    "epub_lang": "ja",
+    "epub_tocTitle": "目次",
+    "epub_appendChapterTitles": false
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/8amjp/novel-builder.git"
+  },
+  "author": "8amjp",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/8amjp/novel-builder/issues"
+  },
+  "homepage": "https://github.com/8amjp/novel-builder#readme",
+  "dependencies": {
+    "epub-gen": "0.0.20",
+    "fs-extra": "^7.0.0",
+    "markdown-it": "^8.4.2"
+  }
+}

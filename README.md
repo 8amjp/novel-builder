@@ -1,2 +1,4 @@
-# novel-builder
-Web小説執筆用ツール
+novel-builder
+=============
+
+Web小説の執筆を補助するツールです。
