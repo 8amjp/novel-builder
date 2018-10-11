@@ -1,2 +1,2 @@
 'use strict';
-module.exports = require('./lib/build');
+require('./bin/build');

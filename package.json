@@ -1,6 +1,6 @@
 {
   "name": "novel-builder",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Web小説執筆補助ツール",
   "main": "index.js",
   "directories": {
@@ -8,6 +8,9 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin" : {
+    "novel-build" : "./bin/build" 
   },
   "repository": {
     "type": "git",
