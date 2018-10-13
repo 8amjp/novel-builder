@@ -181,6 +181,7 @@ npm run novel-build
 - [ ] 自動フォーマット機能(全角インデント挿入等)の実装
 - [ ] 画像出力機能の実装
 - [ ] READMEに「`package.json`に記述するライセンス表記について」を追記
+- [ ] READMEに「.gitignoreの書き方」を追記
 
 ## Author
 
