@@ -1,2 +1,3 @@
 'use strict';
-require('./bin/build');
+require('./bin/novel-build.js');
+require('./bin/epub-build.js');
