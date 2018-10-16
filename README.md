@@ -88,8 +88,8 @@ npm install novel-builder --save
     "novel-build-epub": "novel-build-epub",
     "novel-build-narou": "novel-build-narou",
     "novel-build-note": "novel-build-note",
-    "novel-build-novelabo": "./bin/novel-build-novelabo.js",
-    "novel-proofread": "./bin/novel-proofread.js"
+    "novel-build-novelabo": "novel-build-novelabo",
+    "novel-proofread": "novel-proofread"
   },
 ```
 
