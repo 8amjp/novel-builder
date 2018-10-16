@@ -1,6 +1,6 @@
 {
   "name": "novel-builder",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Web小説執筆補助ツール",
   "main": "index.js",
   "directories": {
