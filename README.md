@@ -150,7 +150,7 @@ npm run novel-proofread
 
 #### 校正コマンドの説明
 
-##### novel-proofread
+##### `novel-proofread`
 
 下記のルールに基づいて文書を修正し、上書き保存します。
 
@@ -185,29 +185,29 @@ npm run novel-build
 
 #### ファイル変換コマンドの説明
 
-##### novel-build
+##### `novel-build`
 
 下記全てのファイルを一度に出力します。
 
-##### novel-build-epub
+##### `novel-build-epub`
 
 `dist`ディレクトリに、EPUBファイルを出力します。  
 `package.json`の`config`の記述、および`cover.jpeg`ファイルが存在しないとエラーになります。
 
-##### novel-build-narou
+##### `novel-build-narou`
 
 `dist/narou`ディレクトリに、小説家になろう向けの原稿をプレーンテキストで出力します。  
 カクヨム・エブリスタにも対応しています。
 
 * ルビ記法はそのまま出力します。
 
-##### novel-build-note
+##### `novel-build-note`
 
 `dist/note`ディレクトリに、note向けの原稿をプレーンテキストで出力します。  
 
 * ルビ記法を括弧書きに変換します。
 
-##### novel-build-novelabo
+##### `novel-build-novelabo`
 
 `dist/novelabo`ディレクトリに、ノベラボ向けの原稿をプレーンテキストで出力します。  
 
