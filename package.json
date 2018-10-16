@@ -14,7 +14,8 @@
     "novel-build-epub": "./bin/novel-build-epub.js",
     "novel-build-narou": "./bin/novel-build-narou.js",
     "novel-build-note": "./bin/novel-build-note.js",
-    "novel-build-novelabo": "./bin/novel-build-novelabo.js"
+    "novel-build-novelabo": "./bin/novel-build-novelabo.js",
+    "novel-proofread": "./bin/novel-proofread.js"
   },
   "repository": {
     "type": "git",
