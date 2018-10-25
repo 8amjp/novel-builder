@@ -1,5 +1,5 @@
-novel-builder
-=============
+novel-builder.js
+================
 
 篠宮樹里「絵子よ、Web小説の執筆を補助するツールをNode.jsで作ってみたぞ」  
 瀬尾絵子「何でもJavaScriptでやりたいんだねー……」
