@@ -89,7 +89,8 @@ npm install novel-builder --save
     "novel-build-narou": "novel-build-narou",
     "novel-build-note": "novel-build-note",
     "novel-build-novelabo": "novel-build-novelabo",
-    "novel-proofread": "novel-proofread"
+    "novel-proofread": "./bin/novel-proofread.js",
+    "novel-report": "./bin/novel-report.js"
   },
 ```
 
