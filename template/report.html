@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <title>Novel Report</title>
+</head>
+<body>
+    <div class="container">
+        <h1 class="py-3">Novel Report</h1>
+        <p class="lead">{{ name }}</p>
+
+        <div class="alert alert-warning" role="alert">
+           計算値は概算です。各種小説投稿サイトの仕様により、文字数等の計算値は変化します。
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <div class="card mb-3">
+                    <div class="card-header p-2">
+                        Web小説として文字数を計算する
+                    </div>
+                    <div class="card-body p-2">
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th>条件</th>
+                                    <th>文字数</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>文字数1 <small>(半角スペース・改行を除いた文字数)</small></td>
+                                    <td class="text-right"><span class="font-weight-bold">{{ chars1 }}</span> 字</td>
+                                </tr>
+                                <tr>
+                                    <td>文字数2 <small>(さらに全角スペースを除いた文字数)</small></td>
+                                    <td class="text-right"><span class="font-weight-bold">{{ chars2 }}</span> 字</td>
+                                </tr>
+                                <tr>
+                                    <td>文字数3 <small>(さらにルビ文字を除いた文字数)</small></td>
+                                    <td class="text-right"><span class="font-weight-bold">{{ chars3 }}</span> 字</td>
+                                </tr>
+                                <tr>
+                                    <td>文字数4 <small>(さらに章タイトルを除いた文字数)</small></td>
+                                    <td class="text-right"><span class="font-weight-bold">{{ chars4 }}</span> 字</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="card mb-3">
+                    <div class="card-header p-2">
+                        章別レポート (Web小説)
+                    </div>
+                    <div class="card-body p-2">
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th>ファイル名</th>
+                                    <th>文字数1</th>
+                                    <th>文字数2</th>
+                                    <th>文字数3</th>
+                                    <th>文字数4</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{# details }}
+                                <tr>
+                                    <td>{{ name }}</td>
+                                    <td class="text-right">{{ chars1 }} 字</td>
+                                    <td class="text-right">{{ chars2 }} 字</td>
+                                    <td class="text-right">{{ chars3 }} 字</td>
+                                    <td class="text-right">{{ chars4 }} 字</td>
+                                </tr>
+                                {{/ details }}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-md-6 col-sm-12">
+
+                <div class="card mb-3">
+                    <div class="card-header p-2">
+                        原稿用紙(20字×20行)として文字数を計算する
+                    </div>
+                    <div class="card-body p-2">
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th>条件</th>
+                                    <th>行数</th>
+                                    <th>枚数</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>章の間を1行空ける</td>
+                                    <td class="text-right">
+                                        <span class="font-weight-bold">{{ manuscript.break.lines }}</span> 行
+                                    </td>
+                                    <td class="text-right">
+                                        <span class="font-weight-bold">{{ manuscript.break.pages }}</span> 枚 + 
+                                        <span class="font-weight-bold">{{ manuscript.break.modlines }}</span> 行
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>章の間を1行空けない</td>
+                                    <td class="text-right">
+                                        <span class="font-weight-bold">{{ manuscript.nobreak.lines }}</span> 行
+                                    </td>
+                                    <td class="text-right">
+                                        <span class="font-weight-bold">{{ manuscript.nobreak.pages }}</span> 枚 + 
+                                        <span class="font-weight-bold">{{ manuscript.nobreak.modlines }}</span> 行
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="card mb-3">
+                    <div class="card-header p-2">
+                        章別レポート (原稿用紙)
+                    </div>
+                    <div class="card-body p-2">
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th>ファイル名</th>
+                                    <th>行数</th>
+                                    <th>枚数</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{# details }}
+                                <tr>
+                                    <td>{{ name }}</td>
+                                    <td class="text-right">{{ manuscriptlines }} 行</td>
+                                    <td class="text-right">{{ manuscriptpages }} 枚 + {{ manuscriptmodlines }} 行</td>
+                                </tr>
+                                {{/ details }}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+
+                <div class="card mb-3">
+                    <div class="card-header p-2">
+                        行内訳
+                    </div>
+                    <div class="card-body p-2">
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th>条件</th>
+                                    <th>行数</th>
+                                    <th>割合</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>全行数</td>
+                                    <td class="text-right">
+                                        <span class="font-weight-bold">{{ lines }}</span> 行
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>台詞 <small>(鉤括弧で始まる行)</small></td>
+                                    <td class="text-right">
+                                        <span class="font-weight-bold">{{ quotelines }}</span> 行
+                                    </td>
+                                    <td class="text-right">
+                                        <small>({{ quoteratio }}%)</small>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>地の文 <small>(全角スペースで始まる行)</small></td>
+                                    <td class="text-right">
+                                        <span class="font-weight-bold">{{ descriptivelines }}</span> 行
+                                    </td>
+                                    <td class="text-right">
+                                        <small>({{ descriptiveratio }}%)</small>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>その他の文字で始まる行 <small>(章タイトル等)</small></td>
+                                    <td class="text-right">
+                                        <span class="font-weight-bold">{{ otherlines }}</span> 行
+                                    </td>
+                                    <td class="text-right">
+                                        <small>({{ otherratio }}%)</small>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>空行</td>
+                                    <td class="text-right">
+                                        <span class="font-weight-bold">{{ emptylines }}</span> 行
+                                    </td>
+                                    <td class="text-right">
+                                        <small>({{ emptyratio }}%)</small>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="card mb-3">
+                    <div class="card-header p-2">
+                        章別レポート (行内訳)
+                    </div>
+                    <div class="card-body p-2">
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th>ファイル名</th>
+                                    <th>行数</th>
+                                    <th>台詞</th>
+                                    <th>地の文</th>
+                                    <th>その他</th>
+                                    <th>空行</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{# details }}
+                                <tr>
+                                    <td>{{ name }}</td>
+                                    <td class="text-right">{{ lines }} 行</td>
+                                    <td class="text-right">{{ quotelines }} 行<br><small>({{ quoteratio }}%)</small></td>
+                                    <td class="text-right">{{ descriptivelines }} 行<br><small>({{ descriptiveratio }}%)</small></td>
+                                    <td class="text-right">{{ otherlines }} 行<br><small>({{ otherratio }}%)</small></td>
+                                    <td class="text-right">{{ emptylines }} 行<br><small>({{ emptyratio }}%)</small></td>
+                                </tr>
+                                {{/ details }}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-md-6 col-sm-12">
+
+                <div class="card mb-3">
+                    <div class="card-header p-2">
+                        使用されているルビ文字の一覧
+                    </div>
+                    <div class="card-body p-2">
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th>ファイル名</th>
+                                    <th>ルビ文字</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tbody>
+                                    {{# details }}
+                                    <tr>
+                                        <td>{{ name }}</td>
+                                        <td>
+                                            {{# rubytexts }}
+                                                <span class="badge badge-light font-weight-normal">{{ text }}</span>
+                                            {{/ rubytexts }}
+                                        </td>
+                                    </tr>
+                                    {{/ details }}
+                                </tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+    
+            </div>
+        
+        </div>
+
+    </div>
+</body>
+</html>

@@ -215,6 +215,26 @@ npm run novel-build
 * ルビ記法はそのまま出力します。
 
 
+### レポート機能を使用する(novel-report)
+
+樹里「最後に、原稿を分析してレポートを出力する機能だ」  
+絵子「そんな機能まで付けたんだ」
+
+```
+npm run novel-report
+```
+
+樹里「コマンドを入力すると、`report.html`ファイルに分析した内容が出力される」  
+絵子「ほー」  
+
+#### ファイル変換コマンドの説明
+
+##### `novel-report`
+
+原稿の文字数、原稿用紙に換算した場合の枚数、台詞や地の文の割合、使用されているルビ文字の一覧などを出力します。
+
+----
+
 樹里「以上で説明は終了だ。わずらわしい事はすべてプログラムに任せ、執筆に集中しようじゃないか」  
 絵子「よーし、やるぞー！」  
 
@@ -223,8 +243,16 @@ npm run novel-build
 このツールは、下記のライブラリを使用しています。
 
 * [epub-gen](https://www.npmjs.com/package/epub-gen)
+  - EPUB変換
 * [fs-extra](https://www.npmjs.com/package/fs-extra)
+  - ファイル読み書き
+* [jp-wrap](https://www.npmjs.com/package/jp-wrap)
+  - 原稿用紙換算での文字数計算
 * [markdown-it](https://www.npmjs.com/package/markdown-it)
+  - MarkdownをHTMLに変換
+* [mustache](https://www.npmjs.com/package/mustache)
+  - レポート用HTMLを出力
+
 
 ## Todo
 
