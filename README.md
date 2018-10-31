@@ -89,7 +89,6 @@ npm install novel-builder --save
     "epub_title": "恋に落ちるコード.js",
     "epub_author": "足羽川永都",
     "epub_publisher": "8novels",
-    "epub_css": "",
     "epub_lang": "ja",
     "epub_tocTitle": "目次",
     "epub_appendChapterTitles": false
