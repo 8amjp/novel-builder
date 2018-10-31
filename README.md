@@ -89,6 +89,7 @@ npm install novel-builder --save
     "epub_title": "恋に落ちるコード.js",
     "epub_author": "足羽川永都",
     "epub_publisher": "8novels",
+    "epub_css": "",
     "epub_lang": "ja",
     "epub_tocTitle": "目次",
     "epub_appendChapterTitles": false
@@ -104,9 +105,9 @@ npm install novel-builder --save
   },
 ```
 
-樹里「`config`の部分は、EPUBを出力する際に必要な設定だ。題名や著者名などを指定している」  
+樹里「`config`の部分は、EPUBを出力する際に必要な設定だ。題名や著者名などを指定している。あとで詳しく説明する」  
 絵子「はーい」  
-樹里「`scripts`の部分は、コマンド名と実行されるコマンドとを対比したものだ。あとで詳しく説明する」  
+樹里「`scripts`の部分は、コマンド名と実行されるコマンドとを対比したものだ。これもあとで詳しく説明する」  
 絵子「はーい」
 
 #### 必要なツールを追加インストールする
@@ -129,10 +130,6 @@ npm install
 * すべての原稿は、`episodes`ディレクトリ内に保存する。
 * 原稿は、Markdown形式で記述し、「001.md」「002.md」…のように連番となるよう保存する。
 * ルビの記法は[青空文庫注記形式](https://www.aozora.gr.jp/aozora-manual/index-input.html#markup)とする。
-
-樹里「それから、EPUBの表紙に使用する画像を用意する必要がある」  
-絵子「そっか、表紙も大事だもんね」  
-樹里「プロジェクトディレクトリの直下に`cover.jpeg`という名前で保存すること。もちろん、EPUBを作成しない場合は不要だ」
 
 ### 校正機能を使用する(novel-proofread)
 
@@ -159,9 +156,7 @@ npm run novel-proofread
 絵子「ほほう」  
 樹里「では、実際にどう校正されるのか説明しよう」
 
-#### 校正コマンドの説明
-
-##### `novel-proofread`
+#### `novel-proofread`
 
 下記のルールに基づいて文書を修正し、上書き保存します。
 
@@ -194,31 +189,80 @@ npm run novel-build
 絵子「短いコマンドは正義だね」  
 樹里「では、このコマンドによって、実際に何が出力されるのか説明しよう」
 
-#### ファイル変換コマンドの説明
-
-##### `novel-build`
+#### `novel-build`
 
 下記全てのファイルを一度に出力します。
 
-##### `novel-build-epub`
+#### `novel-build-epub`
 
 `dist`ディレクトリに、EPUBファイルを出力します。  
-`package.json`の`config`の記述、および`cover.jpeg`ファイルが存在しないとエラーになります。
 
-##### `novel-build-narou`
+##### 必要なファイル
+
+EPUBファイルを作成するためには、いくつかのファイルを準備する必要があります。
+
+**cover.jpeg** (表紙画像)
+
+表紙に使用する画像ファイルを、`cover.jpeg`というファイル名でプロジェクトディレクトリ直下に保存します。  
+[Amazon KDP](https://kdp.amazon.co.jp/ja_JP/help/topic/G200645690)では、
+縦2,560 x 横1,600 ピクセルというサイズが推奨されています。
+
+**epub.css** (スタイルシート)
+
+EPUBに適用するスタイルシートを`epub.css`というファイル名でプロジェクトディレクトリ直下に保存します。  
+後述のように、`package.json`に直接記述することもできます。
+
+##### config
+
+また、`package.json`の`config`プロパティに必要な項目を記述してください。
+
+**`epub_title`**
+
+書籍のタイトルを記述します。未指定の場合は`package.json`の`name`プロパティが使用されます。
+
+**`epub_author`**
+
+著者名を記述します。未指定の場合は`package.json`の`author`プロパティが使用されます。
+
+**`epub_publisher`**
+
+著者名を記述します。未指定の場合は空欄になります。
+
+**`epub_css`**
+
+スタイルシートを記述します。未指定の場合は既定のスタイルが適用されます。  
+ただし、プロジェクトディレクトリ直下に`epub.css`というファイルが存在する場合は、そちらが優先されます。  
+
+例えば、`"epub_css": "body{background:blue;}"`と記述すると、ページの背景が青色になります。
+
+**`epub_lang`**
+
+言語を指定します。未指定の場合はja(日本語)となります。
+
+**`epub_tocTitle`**
+
+目次のタイトルを記述します。未指定の場合は「目次」となります。
+
+**`epub_appendChapterTitles`**
+
+各章の冒頭に章タイトルを追加するかどうかを指定します。  
+`false`を指定した場合は追加されません。`true`を指定、または未指定の場合は追加されます。  
+通常は、本文内に章タイトルが記述されていると思いますので、`false`の指定を推奨します。
+
+#### `novel-build-narou`
 
 `dist/narou`ディレクトリに、小説家になろう向けの原稿をプレーンテキストで出力します。  
 カクヨム・エブリスタにも対応しています。
 
 * ルビ記法はそのまま出力します。
 
-##### `novel-build-note`
+#### `novel-build-note`
 
 `dist/note`ディレクトリに、note向けの原稿をプレーンテキストで出力します。  
 
 * ルビ記法を括弧書きに変換します。
 
-##### `novel-build-novelabo`
+#### `novel-build-novelabo`
 
 `dist/novelabo`ディレクトリに、ノベラボ向けの原稿をプレーンテキストで出力します。  
 
