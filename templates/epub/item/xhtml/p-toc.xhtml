@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html
+ xmlns="http://www.w3.org/1999/xhtml"
+ xmlns:epub="http://www.idpf.org/2007/ops"
+ xml:lang="ja"
+ class="{{ mode }}"
+>
+<head>
+<meta charset="UTF-8"/>
+<title>{{ title }}</title>
+<link rel="stylesheet" type="text/css" href="../style/book-style.css"/>
+</head>
+<body class="p-toc">
+<div class="main">
+
+<h1 class="mokuji-midashi">目次</h1>
+<p><br/></p>
+<p><br/></p>
+{{# content }}
+<p><a href="p-{{ id }}.xhtml#toc-{{ id }}">{{ title }}</a></p>
+{{/ content }}
+
+</div>
+</body>
+</html>

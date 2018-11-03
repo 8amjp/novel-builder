@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package
+ xmlns="http://www.idpf.org/2007/opf"
+ version="3.0"
+ xml:lang="ja"
+ unique-identifier="unique-id"
+ prefix="ebpaj: http://www.ebpaj.jp/"
+>
+
+<metadata xmlns:dc="http://purl.org/dc/elements/1.1/">
+
+<!-- 作品名 -->
+<dc:title id="title">{{ title }}</dc:title>
+<meta refines="#title" property="file-as">{{ titleFileAs }}</meta>
+
+<!-- 著者名 -->
+<dc:creator id="creator01">{{ author }}</dc:creator>
+<meta refines="#creator01" property="role" scheme="marc:relators">aut</meta>
+<meta refines="#creator01" property="file-as">{{ authorFileAs }}</meta>
+<meta refines="#creator01" property="display-seq">1</meta>
+
+<!-- 出版社名 -->
+<dc:publisher id="publisher">{{ publisher }}</dc:publisher>
+<meta refines="#publisher" property="file-as">{{ publisherFileAs }}</meta>
+
+<!-- 言語 -->
+<dc:language>ja</dc:language>
+
+<!-- ファイルid -->
+<dc:identifier id="unique-id">{{ identifier }}</dc:identifier>
+
+<!-- 更新日 -->
+<meta property="dcterms:modified">{{ modified }}</meta>
+
+<!-- etc. -->
+<meta property="ebpaj:guide-version">1.1.3</meta>
+
+</metadata>
+
+<manifest>
+
+<!-- navigation -->
+<item media-type="application/xhtml+xml" id="toc" href="navigation-documents.xhtml" properties="nav"/>
+
+<!-- style -->
+<item media-type="text/css" id="book-style"     href="style/book-style.css"/>
+<item media-type="text/css" id="style-reset"    href="style/style-reset.css"/>
+<item media-type="text/css" id="style-standard" href="style/style-standard.css"/>
+<item media-type="text/css" id="style-advance"  href="style/style-advance.css"/>
+<item media-type="text/css" id="style-check"    href="style/style-check.css"/>
+
+<!-- image -->
+<item media-type="image/jpeg" id="cover" href="image/cover.jpg" properties="cover-image"/>
+
+<!-- xhtml -->
+<item media-type="application/xhtml+xml" id="p-cover"       href="xhtml/p-cover.xhtml"/>
+{{# fmatter }}
+<item media-type="application/xhtml+xml" id="p-fmatter"     href="xhtml/p-fmatter.xhtml"/>
+{{/ fmatter }}
+{{# titlepage }}
+<item media-type="application/xhtml+xml" id="p-titlepage"   href="xhtml/p-titlepage.xhtml"/>
+{{/ titlepage }}
+{{# caution }}
+<item media-type="application/xhtml+xml" id="p-caution"     href="xhtml/p-caution.xhtml"/>
+{{/ caution }}
+<item media-type="application/xhtml+xml" id="p-toc"         href="xhtml/p-toc.xhtml"/>
+{{# content }}
+<item media-type="application/xhtml+xml" id="p-{{ id }}"    href="xhtml/p-{{ id }}.xhtml"/>
+{{/ content }}
+{{# colophon }}
+<item media-type="application/xhtml+xml" id="p-colophon"    href="xhtml/p-colophon.xhtml"/>
+{{/ colophon }}
+</manifest>
+
+<spine page-progression-direction="{{ direction }}">
+
+<itemref linear="yes" idref="p-cover"       properties="page-spread-left"/>
+{{# fmatter }}
+<itemref linear="yes" idref="p-fmatter"     properties="page-spread-left"/>
+{{/ fmatter }}
+{{# titlepage }}
+<itemref linear="yes" idref="p-titlepage"   properties="page-spread-left"/>
+{{/ titlepage }}
+{{# caution }}
+<itemref linear="yes" idref="p-caution"     properties="page-spread-left"/>
+{{/ caution }}
+<itemref linear="yes" idref="p-toc"         properties="page-spread-left"/>
+{{# content }}
+<itemref linear="yes" idref="p-{{ id }}"/>
+{{/ content }}
+{{# colophon }}
+<itemref linear="yes" idref="p-colophon"    properties="page-spread-left"/>
+{{/ colophon }}
+
+</spine>
+
+</package>
