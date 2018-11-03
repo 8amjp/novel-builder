@@ -30,7 +30,7 @@
     "url": "https://github.com/8amjp/novel-builder/issues"
   },
   "homepage": "https://github.com/8amjp/novel-builder#readme",
-  "keywords": [ "novel", "epub", "小説" ],
+  "keywords": [ "novel", "epub", "writing", "book", "小説" ],
   "dependencies": {
     "archiver": "^3.0.0",
     "fs-extra": "^7.0.0",
