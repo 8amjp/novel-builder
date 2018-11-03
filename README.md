@@ -85,28 +85,20 @@ npm install novel-builder --save
 樹里「この`package.json`の任意の場所に、下記の情報を手動で追加する必要がある」
 
 ```
-  "config": {
-    "epub_title": "恋に落ちるコード.js",
-    "epub_author": "足羽川永都",
-    "epub_publisher": "8novels",
-    "epub_lang": "ja",
-    "epub_tocTitle": "目次",
-    "epub_appendChapterTitles": false
-  },
   "scripts": {
     "novel-build": "novel-build",
-    "novel-build-epub": "novel-build-epub",
     "novel-build-narou": "novel-build-narou",
     "novel-build-note": "novel-build-note",
     "novel-build-novelabo": "novel-build-novelabo",
     "novel-proofread": "novel-proofread",
+    "novel-publish": "novel-publish",
+    "novel-publish-horizontal": "novel-publish-horizontal",
+    "novel-publish-vertical": "novel-publish-vertical",
     "novel-report": "novel-report"
   },
 ```
 
-樹里「`config`の部分は、EPUBを出力する際に必要な設定だ。題名や著者名などを指定している。あとで詳しく説明する」  
-絵子「はーい」  
-樹里「`scripts`の部分は、コマンド名と実行されるコマンドとを対比したものだ。これもあとで詳しく説明する」  
+樹里「`scripts`の部分は、コマンド名と実行されるコマンドとを対比したものだ。順番に説明する」  
 絵子「はーい」
 
 #### 必要なツールを追加インストールする
@@ -206,62 +198,6 @@ npm run novel-build
 
 下記全てのファイルを一度に出力します。
 
-#### `novel-build-epub`
-
-`dist`ディレクトリに、EPUBファイルを出力します。  
-
-##### 必要なファイル
-
-EPUBファイルを作成するためには、いくつかのファイルを準備する必要があります。
-
-**cover.jpeg** (表紙画像)
-
-表紙に使用する画像ファイルを、`cover.jpeg`というファイル名でプロジェクトディレクトリ直下に保存します。  
-[Amazon KDP](https://kdp.amazon.co.jp/ja_JP/help/topic/G200645690)では、
-縦2,560 x 横1,600 ピクセルというサイズが推奨されています。
-
-**epub.css** (スタイルシート)
-
-EPUBに適用するスタイルシートを`epub.css`というファイル名でプロジェクトディレクトリ直下に保存します。  
-後述のように、`package.json`に直接記述することもできます。
-
-##### config
-
-また、`package.json`の`config`プロパティに必要な項目を記述してください。
-
-**`epub_title`**
-
-書籍のタイトルを記述します。未指定の場合は`package.json`の`name`プロパティが使用されます。
-
-**`epub_author`**
-
-著者名を記述します。未指定の場合は`package.json`の`author`プロパティが使用されます。
-
-**`epub_publisher`**
-
-著者名を記述します。未指定の場合は空欄になります。
-
-**`epub_css`**
-
-スタイルシートを記述します。未指定の場合は既定のスタイルが適用されます。  
-ただし、プロジェクトディレクトリ直下に`epub.css`というファイルが存在する場合は、そちらが優先されます。  
-
-例えば、`"epub_css": "body{background:blue;}"`と記述すると、ページの背景が青色になります。
-
-**`epub_lang`**
-
-言語を指定します。未指定の場合はja(日本語)となります。
-
-**`epub_tocTitle`**
-
-目次のタイトルを記述します。未指定の場合は「目次」となります。
-
-**`epub_appendChapterTitles`**
-
-各章の冒頭に章タイトルを追加するかどうかを指定します。  
-`false`を指定した場合は追加されません。`true`を指定、または未指定の場合は追加されます。  
-通常は、本文内に章タイトルが記述されていると思いますので、`false`の指定を推奨します。
-
 #### `novel-build-narou`
 
 `dist/narou`ディレクトリに、小説家になろう向けの原稿をプレーンテキストで出力します。  
@@ -281,6 +217,99 @@ EPUBに適用するスタイルシートを`epub.css`というファイル名で
 
 * 縦書き表示で見栄えがいいように、英数字を全角に変換します。
 * ルビ記法はそのまま出力します。
+
+
+### EPUB出力機能を使用する(novel-publish)
+
+樹里「次は、EPUBを出力する機能だ」  
+絵子「EPUBって、電子書籍のフォーマットだよね。そんなのもできるんだねー」  
+樹里「それも、[電書協 EPUB 3 制作ガイド](http://ebpaj.jp/counsel/guide)に準拠したEPUBが……」
+
+```
+npm run novel-publish
+```
+
+樹里「のコマンド一つで出来上がる」  
+絵子「ほえー。こりゃ便利だ」
+
+#### `novel-publish`
+
+下記全てのファイルを一度に出力します。
+
+#### `novel-publish-horizontal`
+
+`dist`ディレクトリに、横書きレイアウトのEPUBファイルを出力します。ファイル名は『(パッケージ名)-h.epub』となります。
+
+#### `novel-publish-vertical`
+
+`dist`ディレクトリに、縦書きレイアウトEPUBファイルを出力します。ファイル名は『(パッケージ名)-v.epub』となります。
+
+##### 必要なファイル
+
+樹里「EPUBファイルを作成するためには、原稿以外にいくつかのファイルを準備する必要がある」  
+絵子「一冊の本を作るわけだからね。準備は大事だね」  
+樹里「すべてのファイルは、プロジェクトディレクトリ直下に**epub**というディレクトリを作り、そこに保存する」  
+絵子「おっけー」
+
+**cover.jpg** (表紙画像)  
+樹里「表紙に使用する画像ファイルを、`cover.jpg`というファイル名でepubディレクトリ直下に保存する」  
+絵子「ちなみに、[Amazon KDP](https://kdp.amazon.co.jp/ja_JP/help/topic/G200645690)だと、
+縦2,560 x 横1,600 ピクセルというサイズが推奨されているよ」
+
+**fmatter.md** (前付)  
+樹里「書籍の前付にあたる文章をMarkdown形式で記述する」  
+絵子「目次より前に書いてある、序文とか謝辞とかのことだね。『支えてくれた妻と娘に捧げる。』とか書いてあるやつ」  
+樹里「なお、このファイルがない場合、前付部分は作成しない」
+
+**titlepage.md** (本扉ページ)  
+樹里「書籍の本扉にあたる文章をMarkdown形式で記述する」  
+絵子「タイトルや著者名が書いてあるページだね」  
+樹里「これも、ファイルがない場合は作成しない」
+
+**caution.md** (注意書きページ)  
+樹里「書籍の注意書きにあたる文章をMarkdown形式で記述する」  
+絵子「無断転載はダメだぞ！とか」  
+樹里「これも同じく、ファイルがなければ作成しない」
+
+**colophon.md** (奥付ページ)  
+樹里「書籍の奥付にあたる文章をMarkdown形式で記述する」  
+絵子「最後の部分だね。出版社名とか発行日とか書いてあるページ」  
+樹里「これもファイルがない場合は作成しないぞ」
+
+##### config
+
+樹里「それから、`package.json`の`config`プロパティを作成し、必要な項目を追加する必要がある」
+
+```
+  "config": {
+    "epub_title": "恋に落ちるコード.js",
+    "epub_title_file_as": "こいにおちるこーどどっとじぇいえす",
+    "epub_author": "足羽川永都",
+    "epub_author_file_as": "あすわがわえいと",
+    "epub_publisher": "8novels",
+    "epub_publisher_file_as": "えいとのべるず"
+  },
+```
+
+絵子「こんな感じで書いてね！」
+
+**`epub_title`**  
+書籍のタイトルを記述します。
+
+**`epub_title_file_as`**  
+書籍のタイトルの読みがなを記述します。
+
+**`epub_author`**  
+著者名を記述します。
+
+**`epub_author_file_as`**  
+著者名の読みがなを記述します。
+
+**`epub_publisher`**  
+出版社名を記述します。
+
+**`epub_publisher_file_as`**  
+出版社名の読みがなを記述します。
 
 
 ### レポート機能を使用する(novel-report)
@@ -310,8 +339,8 @@ npm run novel-report
 
 このツールは、下記のライブラリを使用しています。
 
-* [epub-gen](https://www.npmjs.com/package/epub-gen)
-  - EPUB変換
+* [archiver](https://www.npmjs.com/package/archiver)
+  - EPUB作成時のZIP圧縮
 * [fs-extra](https://www.npmjs.com/package/fs-extra)
   - ファイル読み書き
 * [jp-wrap](https://www.npmjs.com/package/jp-wrap)
@@ -325,12 +354,13 @@ npm run novel-report
 ## Todo
 
 - [ ] 対応する形式を増やす(ハーメルン、アルファポリス、etc)
-- [ ] EPUB変換時に全角スペースが消失する問題の対応
+- [x] EPUB変換時に全角スペースが消失する問題の対応
 - [x] 自動フォーマット機能(全角インデント挿入等)の実装
 - [ ] 画像出力機能の実装
 - [ ] READMEに「`package.json`に記述するライセンス表記について」を追記
 - [ ] READMEに「.gitignoreの書き方」を追記
 - [ ] READMEにmarkdown-itのオプション指定方法を追記
+- [ ] 縦書き原稿への変換時、数字を漢数字や縦中横に変換できるオプションを追加
 
 ## Author
 

@@ -1,6 +1,6 @@
 {
   "name": "novel-builder",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "Web小説執筆補助ツール",
   "main": "index.js",
   "directories": {
@@ -11,11 +11,13 @@
   },
   "bin": {
     "novel-build": "./bin/novel-build.js",
-    "novel-build-epub": "./bin/novel-build-epub.js",
     "novel-build-narou": "./bin/novel-build-narou.js",
     "novel-build-note": "./bin/novel-build-note.js",
     "novel-build-novelabo": "./bin/novel-build-novelabo.js",
     "novel-proofread": "./bin/novel-proofread.js",
+    "novel-publish": "./bin/novel-publish.js",
+    "novel-publish-horizontal": "./bin/novel-publish-horizontal.js",
+    "novel-publish-vertical": "./bin/novel-publish-vertical.js",
     "novel-report": "./bin/novel-report.js"
   },
   "repository": {
@@ -29,7 +31,7 @@
   },
   "homepage": "https://github.com/8amjp/novel-builder#readme",
   "dependencies": {
-    "epub-gen": "0.0.20",
+    "archiver": "^3.0.0",
     "fs-extra": "^7.0.0",
     "jp-wrap": "^0.2.2",
     "markdown-it": "^8.4.2",
