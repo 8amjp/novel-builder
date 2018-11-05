@@ -10,6 +10,7 @@ novel-builder.js
 
 * 小説の原稿を各種小説投稿サイト向けの原稿に変換する機能
 * [電書協 EPUB 3 制作ガイド](http://ebpaj.jp/counsel/guide)に準拠したEPUBを作成する機能
+* 小説をPNG画像で出力する機能
 * 行頭に全角スペースを挿入する等の校正機能
 * レポート出力機能
 
@@ -21,6 +22,13 @@ novel-builder.js
 * node.jsやnpmに抵抗がない。むしろ好き！
 
 それでもよろしければ、続きをお読みください。
+
+## Demo
+
+このツールを組み込んだWeb小説をGitHubに公開しています。
+
+* [Redmineで始める異世界人心掌握術](https://github.com/8novels/redmine-fantasy)
+* [福音のマーメイド 〜福井ロコドル活動記〜](https://github.com/8novels/evangelical-mermaids)
 
 ## Usage
 
@@ -91,6 +99,11 @@ npm install novel-builder --save
     "novel-build-narou": "novel-build-narou",
     "novel-build-note": "novel-build-note",
     "novel-build-novelabo": "novel-build-novelabo",
+    "novel-png": "novel-png",
+    "novel-png-square": "novel-png-square",
+    "novel-png-paperback": "novel-png-paperback",
+    "novel-png-note-header": "novel-png-note-header",
+    "novel-png-twitter-header": "novel-png-twitter-header",
     "novel-proofread": "novel-proofread",
     "novel-publish": "novel-publish",
     "novel-publish-horizontal": "novel-publish-horizontal",
@@ -123,7 +136,9 @@ npm install
 * 原稿は、Markdown形式で記述し、「001.md」「002.md」…のように連番となるよう保存する。
 * ルビの記法は[青空文庫注記形式](https://www.aozora.gr.jp/aozora-manual/index-input.html#markup)とする。
 
-### 校正機能を使用する(novel-proofread)
+----
+
+### 校正機能を使用する(`novel-proofread`)
 
 樹里「さて、原稿は書けたか？」  
 絵子「書けたよー。いやー、苦労した」  
@@ -175,7 +190,9 @@ npm run novel-proofread
 
 絵子「……何なのよこの例文」  
 
-### ファイル変換機能を使用する(novel-build)
+----
+
+### ファイル変換機能を使用する(`novel-build`)
 
 樹里「次は、原稿を変換して出力する機能だ」
 
@@ -219,8 +236,9 @@ npm run novel-build
 * 縦書き表示で見栄えがいいように、英数字を全角に変換します。
 * ルビ記法はそのまま出力します。
 
+----
 
-### EPUB出力機能を使用する(novel-publish)
+### EPUB出力機能を使用する(`novel-publish`)
 
 樹里「次は、EPUBを出力する機能だ」  
 絵子「EPUBって、電子書籍のフォーマットだよね。そんなのもできるんだねー」  
@@ -312,6 +330,54 @@ npm run novel-publish
 **`epub_publisher_file_as`**  
 出版社名の読みがなを記述します。
 
+----
+
+### PNG出力機能を使用する(`novel-png`)
+
+樹里「小説をPNG画像として出力する機能もあるぞ」  
+絵子「どういう時に使うの？」  
+樹里「例えば、Instagramなどに掌編小説を公開したい時に使う」  
+絵子「あー、なるほど」
+
+```
+npm run novel-png
+```
+
+樹里「というコマンドで出力できるぞ」  
+
+#### `novel-png`
+
+PNG画像を出力します。高さは1,080px固定で、幅は文章の長さによって変わります。
+
+#### `novel-png-square`
+
+正方形のPNG画像を出力します。  
+幅・高さともに1,080pxとなります。はみ出した文章は表示されません(以下同じ)。
+
+#### `novel-png-paperback`
+
+文庫本と同じ比率のPNG画像を出力します。  
+幅が766px、高さが1,080pxとなります。
+
+#### `novel-png-note-header`
+
+noteのヘッダに適したPNG画像を出力します。  
+幅が1,280px、高さが670pxとなります。
+
+#### `novel-png-twitter-header`
+
+Twitterのヘッダに適したPNG画像を出力します。  
+幅が1,500px、高さが500pxとなります。
+
+#### スタイルシートを適用する
+
+樹里「プロジェクトディレクトリ直下に**png**というディレクトリを作り、その中に**png.css**という名前でスタイルシートを保存すれば、独自のスタイルを適用させることもできる」  
+絵子「どんな風に書いたらいいのかな？」  
+樹里「既定のスタイルは300文字前後の掌編を出力するのに適しているが、それより長い文章の場合は`font-size`を調整したほうが読みやすい。大体**20〜21px**くらいで1行40文字くらいになる」  
+絵子「へー」  
+樹里「あとは、行間(`line-height`)、文字間(`letter-spacing`)、余白(`padding`)、背景色(`background-color`)あたりかな、調整するとしたら。もちろん他にも色々調整できるぞ」  
+
+----
 
 ### レポート機能を使用する(novel-report)
 
@@ -348,14 +414,15 @@ npm run novel-report
   - MarkdownをHTMLに変換
 * [mustache](https://www.npmjs.com/package/mustache)
   - レポート用HTMLを出力
-
+* [puppeteer](https://www.npmjs.com/package/puppeteer)
+  - キャプチャ画像を出力
 
 ## Todo
 
 - [ ] 対応する形式を増やす(ハーメルン、アルファポリス、etc)
 - [x] EPUB変換時に全角スペースが消失する問題の対応
 - [x] 自動フォーマット機能(全角インデント挿入等)の実装
-- [ ] 画像出力機能の実装
+- [x] 画像出力機能の実装
 - [ ] READMEに「`package.json`に記述するライセンス表記について」を追記
 - [ ] READMEに「.gitignoreの書き方」を追記
 - [ ] READMEにmarkdown-itのオプション指定方法を追記
@@ -364,3 +431,5 @@ npm run novel-report
 ## Author
 
 [8amjp](https://github.com/8amjp)
+
+このツールは Xubuntu 18.04 上で Visual Studio Code で開発しています。

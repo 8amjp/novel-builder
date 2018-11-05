@@ -1,6 +1,6 @@
 {
   "name": "novel-builder",
-  "version": "0.2.7",
+  "version": "0.2.8",
   "description": "Web小説執筆補助ツール",
   "main": "index.js",
   "directories": {
@@ -14,6 +14,11 @@
     "novel-build-narou": "./bin/novel-build-narou.js",
     "novel-build-note": "./bin/novel-build-note.js",
     "novel-build-novelabo": "./bin/novel-build-novelabo.js",
+    "novel-png": "./bin/novel-png.js",
+    "novel-png-square": "./bin/novel-png-square.js",
+    "novel-png-paperback": "./bin/novel-png-paperback.js",
+    "novel-png-note-header": "./bin/novel-png-note-header.js",
+    "novel-png-twitter-header": "./bin/novel-png-twitter-header.js",
     "novel-proofread": "./bin/novel-proofread.js",
     "novel-publish": "./bin/novel-publish.js",
     "novel-publish-horizontal": "./bin/novel-publish-horizontal.js",
@@ -30,12 +35,19 @@
     "url": "https://github.com/8amjp/novel-builder/issues"
   },
   "homepage": "https://github.com/8amjp/novel-builder#readme",
-  "keywords": [ "novel", "epub", "writing", "book", "小説" ],
+  "keywords": [
+    "novel",
+    "epub",
+    "writing",
+    "book",
+    "小説"
+  ],
   "dependencies": {
     "archiver": "^3.0.0",
     "fs-extra": "^7.0.0",
     "jp-wrap": "^0.2.2",
     "markdown-it": "^8.4.2",
-    "mustache": "^3.0.0"
+    "mustache": "^3.0.0",
+    "puppeteer": "^1.10.0"
   }
 }
