@@ -258,7 +258,16 @@ npm run novel-build
 現時点では、縦書きレイアウトでの数字の変換方法について指定できます。
 
 `tcy`  
-半角数字を、3桁以下は縦中横、4桁以上は全角数字に変換します(縦書きレイアウトの場合のみ)。
+半角数字を、3桁以下は縦中横、4桁以上は全角数字に変換します(縦書きレイアウトの場合のみ)。  
+※実際には、`<span class="tcy">123</span>`というHTMLに変換されるだけなので、縦中横で表示させるCSSは別途必要となります。  
+[電書協 EPUB 3 制作ガイド](http://ebpaj.jp/counsel/guide)では、下記のCSSが適用されています。
+
+```
+-webkit-text-combine: horizontal;
+-webkit-text-combine-upright: all;
+text-combine-upright: all;
+-epub-text-combine: horizontal;
+```
 
 `kan`  
 半角数字を漢数字に変換します(縦書きレイアウトの場合のみ)。
