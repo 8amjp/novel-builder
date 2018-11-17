@@ -31,19 +31,19 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>文字数1 <small>(半角スペース・改行を除いた文字数)</small></td>
+                                    <td>文字数1 <small>（半角スペース・改行を除いた文字数）</small></td>
                                     <td class="text-right"><span class="font-weight-bold">{{ chars1 }}</span> 字</td>
                                 </tr>
                                 <tr>
-                                    <td>文字数2 <small>(さらに全角スペースを除いた文字数)</small></td>
+                                    <td>文字数2 <small>（さらに全角スペースを除いた文字数）</small></td>
                                     <td class="text-right"><span class="font-weight-bold">{{ chars2 }}</span> 字</td>
                                 </tr>
                                 <tr>
-                                    <td>文字数3 <small>(さらにルビ文字を除いた文字数)</small></td>
+                                    <td>文字数3 <small>（さらにルビ文字を除いた文字数）</small></td>
                                     <td class="text-right"><span class="font-weight-bold">{{ chars3 }}</span> 字</td>
                                 </tr>
                                 <tr>
-                                    <td>文字数4 <small>(さらに章タイトルを除いた文字数)</small></td>
+                                    <td>文字数4 <small>（さらに章タイトルを除いた文字数）</small></td>
                                     <td class="text-right"><span class="font-weight-bold">{{ chars4 }}</span> 字</td>
                                 </tr>
                             </tbody>
@@ -53,7 +53,7 @@
 
                 <div class="card mb-3">
                     <div class="card-header p-2">
-                        章別レポート (Web小説)
+                        章別レポート（Web小説）
                     </div>
                     <div class="card-body p-2">
                         <table class="table table-sm">
@@ -87,7 +87,7 @@
 
                 <div class="card mb-3">
                     <div class="card-header p-2">
-                        原稿用紙(20字×20行)として文字数を計算する
+                        原稿用紙（20字×20行）として文字数を計算する
                     </div>
                     <div class="card-body p-2">
                         <table class="table table-sm">
@@ -126,7 +126,7 @@
 
                 <div class="card mb-3">
                     <div class="card-header p-2">
-                        章別レポート (原稿用紙)
+                        章別レポート（原稿用紙）
                     </div>
                     <div class="card-body p-2">
                         <table class="table table-sm">
@@ -177,7 +177,7 @@
                                     <td></td>
                                 </tr>
                                 <tr>
-                                    <td>台詞 <small>(鉤括弧で始まる行)</small></td>
+                                    <td>台詞 <small>（鉤括弧で始まる行）</small></td>
                                     <td class="text-right">
                                         <span class="font-weight-bold">{{ quotelines }}</span> 行
                                     </td>
@@ -186,7 +186,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>地の文 <small>(全角スペースで始まる行)</small></td>
+                                    <td>地の文 <small>（全角スペースで始まる行）</small></td>
                                     <td class="text-right">
                                         <span class="font-weight-bold">{{ descriptivelines }}</span> 行
                                     </td>
@@ -195,7 +195,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>その他の文字で始まる行 <small>(章タイトル等)</small></td>
+                                    <td>その他の文字で始まる行 <small>（章タイトル等）</small></td>
                                     <td class="text-right">
                                         <span class="font-weight-bold">{{ otherlines }}</span> 行
                                     </td>
@@ -219,7 +219,7 @@
 
                 <div class="card mb-3">
                     <div class="card-header p-2">
-                        章別レポート (行内訳)
+                        章別レポート（行内訳）
                     </div>
                     <div class="card-body p-2">
                         <table class="table table-sm">
@@ -250,19 +250,23 @@
                 </div>
 
             </div>
+        </div>
 
-            <div class="col-md-6 col-sm-12">
+        <div class="row">
+            <div class="col">
 
                 <div class="card mb-3">
                     <div class="card-header p-2">
-                        使用されているルビ文字の一覧
+                        変換対象となる文字の一覧
                     </div>
                     <div class="card-body p-2">
                         <table class="table table-sm">
                             <thead>
                                 <tr>
-                                    <th>ファイル名</th>
-                                    <th>ルビ文字</th>
+                                    <th class="text-nowrap">ファイル名</th>
+                                    <th class="text-nowrap">ルビ文字</th>
+                                    <th class="text-nowrap">半角数字</th>
+                                    <th class="text-nowrap">半角英字</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -274,6 +278,16 @@
                                             {{# rubytexts }}
                                                 <span class="badge badge-light font-weight-normal">{{ text }}</span>
                                             {{/ rubytexts }}
+                                        </td>
+                                        <td>
+                                            {{# numerals }}
+                                                <span class="badge badge-light font-weight-normal">{{ numeral }}</span>
+                                            {{/ numerals }}
+                                        </td>
+                                        <td>
+                                            {{# alphabets }}
+                                                <span class="badge badge-light font-weight-normal">{{ alphabet }}</span>
+                                            {{/ alphabets }}
                                         </td>
                                     </tr>
                                     {{/ details }}
