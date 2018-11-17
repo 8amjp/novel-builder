@@ -98,6 +98,8 @@ npm install novel-builder --save
 ```
   "scripts": {
     "novel-build": "novel-build",
+    "novel-build-hameln": "novel-build-hameln",
+    "novel-build-kakuyomu": "novel-build-kakuyomu",
     "novel-build-narou": "novel-build-narou",
     "novel-build-note": "novel-build-note",
     "novel-build-novelabo": "novel-build-novelabo",
@@ -137,10 +139,11 @@ npm install
 絵子「ま、これが一番大事だよね。当たり前だけど」  
 樹里「そうなんだが、原稿の書き方にはいくつかルールがある」
 
-* すべての原稿は、`episodes`ディレクトリ内に保存する。
-* 原稿は[Markdown形式](https://ja.wikipedia.org/wiki/Markdown)で記述し、ファイル名は「001.md」「002.md」…のように連番となるよう保存する。
-* 英数字は基本的に半角で記述する。
-* ルビの記法は[青空文庫注記形式](https://www.aozora.gr.jp/aozora-manual/index-input.html#markup)とする。
+* すべての原稿は、`episodes`ディレクトリ内に保存します。
+* 原稿は[Markdown形式](https://ja.wikipedia.org/wiki/Markdown)で記述し、ファイル名は「001.md」「002.md」…のように連番となるよう保存します。
+* ルビの記法は[青空文庫注記形式](https://www.aozora.gr.jp/aozora-manual/index-input.html#markup)とします。
+* 傍点で表示したい箇所は`**`または`__`で囲みます。
+* 英数字は基本的に半角で記述します。
 
 ----
 
@@ -171,7 +174,7 @@ npm run novel-proofread
 ```
 
 樹里「……と書けば、`npm run p`と入力するだけで`novel-proofread`コマンドが実行されるわけだ」  
-絵子「ほほう」  
+絵子「ま、`proofread`なんて英単語、覚えにくいもんね。短いほうがいいや」  
 樹里「ただし、他のnpmをインストールしている場合、コマンド名が競合する可能性もあるのでそこは注意を」  
 絵子「ふむふむ」  
 樹里「では、実際にどう校正されるのか説明しよう」
@@ -181,15 +184,18 @@ npm run novel-proofread
 樹里「下記のような、一般的な小説のルールに基づいて文書を修正し、上書き保存する」
 
 * 行頭に全角スペースを挿入します。ただし、下記と一致する行を除きます。
-  - 鉤括弧（「、『）で始まる行
+  - 開き鉤括弧（「『）で始まる行
   - Markdownの見出し記号(#)で始まる行
   - 既に全角スペースが挿入されている行
   - 空行
 * 全角の感嘆符（！）、疑問符（？）のあとに全角スペースを挿入します。ただし、下記と一致する場合を除きます。
-  - 直後が感嘆符、疑問符、鉤括弧（」、』）、半角スペースの場合
+  - 直後が感嘆符、疑問符、閉じ鉤括弧（」』）、半角スペースの場合
   - 既に全角スペースが挿入されている場合
+* 閉じ鉤括弧（」』）直前の全角スペースおよび句読点（、。）を削除します。
 * 三点リーダー（…）の連続回数が奇数だった場合、もう一つ追加します。
 * ダッシュ（―）の連続回数が奇数だった場合、もう一つ追加します。
+* 鉤括弧の開きと閉じの書式が異なる場合、開きの鉤括弧の書式に統一します。
+  - 「〜』という文が合った場合、「〜」に変換します。
 
 樹里「つまり、」
 
@@ -233,37 +239,56 @@ npm run novel-build
 樹里「それでは、一つ一つ説明しよう。まずはサイト毎の既定の変換ルール、次に引数（起動オプション）の説明だ」
 
 #### `novel-build`
-
 下記全てのファイルを一度に出力します。
 
-#### `novel-build-narou`
-
-`dist/narou`ディレクトリに、[小説家になろう](https://syosetu.com/)向けの原稿をプレーンテキストで出力します。  
-[カクヨム](https://kakuyomu.jp/)・[エブリスタ](https://estar.jp/)にも対応しています。
+#### `novel-build-hameln`
+`dist/hameln`ディレクトリに、[ハーメルン](https://syosetu.org/)向けの原稿をプレーンテキストで出力します。  
 
 既定の変換ルール:
 
 * ルビ記法: そのまま出力します。
+* 強調記号: **傍点記法**に変換します（`emphasis=bracket`）。
+* 半角英字: そのまま出力します。
+* 半角数字: そのまま出力します。
+
+#### `novel-build-kakuyomu`
+`dist/kakuyomu`ディレクトリに、[カクヨム](https://kakuyomu.jp/)向けの原稿をプレーンテキストで出力します。  
+
+既定の変換ルール:
+
+* ルビ記法: そのまま出力します。
+* 強調記号: **傍点記法**に変換します（`emphasis=bracket`）。
+* 半角英字: そのまま出力します。
+* 半角数字: そのまま出力します。
+
+#### `novel-build-narou`
+`dist/narou`ディレクトリに、[小説家になろう](https://syosetu.com/)向けの原稿をプレーンテキストで出力します。  
+[エブリスタ](https://estar.jp/)、[NOVEL DAYS](https://novel.daysneo.com/)にも対応しています。
+
+既定の変換ルール:
+
+* ルビ記法: そのまま出力します。
+* 強調記号: **削除**します（`emphasis=none`）。
 * 半角英字: そのまま出力します。
 * 半角数字: そのまま出力します。
 
 #### `novel-build-note`
-
 `dist/note`ディレクトリに、[note](https://note.mu/)向けの原稿をプレーンテキストで出力します。  
 
 既定の変換ルール:
 
 * ルビ記法: **括弧書き**に変換します（`ruby=paren`）。
+* 強調記号: **削除**します（`emphasis=none`）。
 * 半角英字: そのまま出力します。
 * 半角数字: そのまま出力します。
 
 #### `novel-build-novelabo`
-
 `dist/novelabo`ディレクトリに、[ノベラボ](https://www.novelabo.com/)向けの原稿をプレーンテキストで出力します。  
 
 既定の変換ルール:
 
 * ルビ記法: そのまま出力します。
+* 強調記号: **削除**します（`emphasis=none`）。
 * 半角英字: **全角英字に変換**します（`alphabet=full`）。
 * 半角数字: **全角数字に変換**します（`number=full`）。
 
@@ -274,27 +299,40 @@ npm run novel-build
 複数の引数を指定することもできます。その場合は、`number=tcy ruby=html`というようにスペースで区切って指定します。
 
 #### `ruby=html`
-
 ルビ記法をHTMLに変換します。  
 「｜絵子《えこ》」は「`<ruby>絵子<rt>えこ</rt></ruby>`」に変換されます。
 
 #### `ruby=paren`
-
 ルビ記法を括弧書きに変換します。括弧は全角括弧です。  
 「｜絵子《えこ》」は「絵子（えこ）」に変換されます。
 
 #### `ruby=none`
-
 ルビ文字を除去します。  
 「｜絵子《えこ》」は「絵子」に変換されます。
 
-#### `alphabet=full`
+#### `emphasis=bracket`
+強調記号を傍点記法に変換します。  
+「\*\*樹里\*\*」は「《《樹里》》」に変換されます。
 
+#### `emphasis=sesame`
+強調記号を傍点（ゴマ点）で表示するHTMLに変換します。  
+※実際には、`<span class="em-sesame">樹里</span>`というHTMLに変換されるだけなので、傍点で表示させるCSSは別途指定する必要があります。  
+[電書協 EPUB 3 制作ガイド](http://ebpaj.jp/counsel/guide)では、下記のCSSが適用されています。
+
+```
+-webkit-text-emphasis-style: filled sesame;
+-epub-text-emphasis-style: filled sesame;
+```
+
+#### `emphasis=none`
+強調記号を除去します。  
+「\*\*樹里\*\*」は「樹里」に変換されます。
+
+#### `alphabet=full`
 半角英字、アンド記号（&）、カンマ（,）、ピリオド（.）を全角に変換します。
 
 #### `number=tcy`
-
-半角数字を、3桁以下は縦中横、4桁以上は全角数字に変換します。  
+半角数字を、3桁以下は縦中横で表示するHTMLに、4桁以上は全角数字に変換します。  
 ※実際には、`<span class="tcy">123</span>`というHTMLに変換されるだけなので、縦中横で表示させるCSSは別途指定する必要があります。  
 [電書協 EPUB 3 制作ガイド](http://ebpaj.jp/counsel/guide)では、下記のCSSが適用されています。
 
@@ -306,15 +344,12 @@ text-combine-upright: all;
 ```
 
 #### `number=kan`
-
 半角数字を漢数字に変換します。
 
 #### `number=full`
-
 半角数字を全角数字に変換します。
 
 #### `symbol=[\W+]`
-
 指定された記号（非単語構成文字）を全角に変換します。  
 例えば、「#」「$」「%」の記号を全角に変換したい場合は`symbol=#$%`と入力します。
 
@@ -335,16 +370,27 @@ npm run novel-publish
 樹里「また、`novel-build`コマンドの時と同じ引数（起動オプション）も指定できるぞ」
 
 #### `novel-publish`
-
 下記全てのファイルを一度に出力します。
 
 #### `novel-publish-horizontal`
-
 `dist`ディレクトリに、横書きレイアウトのEPUBファイルを出力します。ファイル名は『（パッケージ名）-h.epub』となります。
 
-#### `novel-publish-vertical`
+既定の変換ルール:
 
+* ルビ記法: そのまま出力します。
+* 強調記号: 傍点（ゴマ点）で表示するHTMLに変換します（`emphasis=sesame`）。
+* 半角英字: そのまま出力します。
+* 半角数字: そのまま出力します。
+
+#### `novel-publish-vertical`
 `dist`ディレクトリに、縦書きレイアウトEPUBファイルを出力します。ファイル名は『（パッケージ名）-v.epub』となります。
+
+既定の変換ルール:
+
+* ルビ記法: そのまま出力します。
+* 強調記号: 傍点（ゴマ点）で表示するHTMLに変換します（`emphasis=sesame`）。
+* 半角英字: **全角英字に変換**します（`alphabet=full`）。
+* 半角数字: **全角数字に変換**します（`number=full`）。
 
 #### 必要なファイル
 
@@ -551,7 +597,7 @@ npm run novel-report
 - [x] EPUB変換時に全角スペースが消失する問題の対応
 - [x] 自動フォーマット機能（全角インデント挿入等）の実装
 - [x] 画像出力機能の実装
-- [ ] READMEに「`package.json`に記述するライセンス表記について」を追記
+- [x] READMEに「`package.json`に記述するライセンス表記について」を追記
 - [x] READMEに「.gitignoreの書き方」を追記
 - [x] 縦書き原稿への変換時、数字を漢数字や縦中横に変換できるオプションを追加
 

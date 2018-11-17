@@ -1,6 +1,6 @@
 {
   "name": "novel-builder",
-  "version": "0.3.6",
+  "version": "0.4.0",
   "description": "Web小説執筆補助ツール",
   "main": "index.js",
   "directories": {
@@ -11,6 +11,8 @@
   },
   "bin": {
     "novel-build": "./bin/novel-build.js",
+    "novel-build-hameln": "./bin/novel-build-hameln.js",
+    "novel-build-kakuyomu": "./bin/novel-build-kakuyomu.js",
     "novel-build-narou": "./bin/novel-build-narou.js",
     "novel-build-note": "./bin/novel-build-note.js",
     "novel-build-novelabo": "./bin/novel-build-novelabo.js",
