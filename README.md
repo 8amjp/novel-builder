@@ -98,6 +98,7 @@ npm install novel-builder --save
 ```
   "scripts": {
     "novel-build": "novel-build",
+    "novel-build-alphapolis": "novel-build-alphapolis",
     "novel-build-hameln": "novel-build-hameln",
     "novel-build-kakuyomu": "novel-build-kakuyomu",
     "novel-build-narou": "novel-build-narou",
@@ -241,6 +242,16 @@ npm run novel-build
 #### `novel-build`
 下記全てのファイルを一度に出力します。
 
+#### `novel-build-alphapolis`
+`dist/hameln`ディレクトリに、[アルファポリス](https://www.alphapolis.co.jp/)向けの原稿をプレーンテキストで出力します。  
+
+既定の変換ルール:
+
+* ルビ記法: アルファポリス書式に変換します（`emphasis=alphapolis`）。
+* 強調記号: **削除**します（`emphasis=none`）。
+* 半角英字: そのまま出力します。
+* 半角数字: そのまま出力します。
+
 #### `novel-build-hameln`
 `dist/hameln`ディレクトリに、[ハーメルン](https://syosetu.org/)向けの原稿をプレーンテキストで出力します。  
 
@@ -298,6 +309,9 @@ npm run novel-build
 引数は、`npm run novel-build -- number=tcy`というように、コマンドの末尾に`--`とスペースに続けて記述します。  
 複数の引数を指定することもできます。その場合は、`number=tcy ruby=html`というようにスペースで区切って指定します。
 
+
+**ルビ記法の変換**:
+
 #### `ruby=html`
 ルビ記法をHTMLに変換します。  
 「｜絵子《えこ》」は「`<ruby>絵子<rt>えこ</rt></ruby>`」に変換されます。
@@ -306,14 +320,21 @@ npm run novel-build
 ルビ記法を括弧書きに変換します。括弧は全角括弧です。  
 「｜絵子《えこ》」は「絵子（えこ）」に変換されます。
 
+#### `ruby=none`
+ルビ文字を除去します。  
+「｜絵子《えこ》」は「絵子」に変換されます。
+
+
+**強調記号（傍点）の変換**: 
+
+#### `emphasis=alphapolis`
+ルビ記法を[アルファポリス書式](https://www.alphapolis.co.jp/faq/)に変換します。  
+「｜絵子《えこ》」や「絵子《えこ》」は「#絵子__えこ__#」に変換されます。
+
 #### `emphasis=hameln`
 ルビ記法を[ハーメルン書式](https://syosetu.org/?mode=readme_view&fid=25)に変換します。  
 ハーメルンでのルビ開始記号は半角の縦棒（|）のみが指定でき、漢字の連続であっても省略はできません。  
 「｜絵子《えこ》」や「絵子《えこ》」は「|絵子《えこ》」に変換されます。
-
-#### `ruby=none`
-ルビ文字を除去します。  
-「｜絵子《えこ》」は「絵子」に変換されます。
 
 #### `emphasis=bracket`
 強調記号を傍点記法に変換します。  
@@ -333,8 +354,14 @@ npm run novel-build
 強調記号を除去します。  
 「\*\*樹里\*\*」は「樹里」に変換されます。
 
+
+**半角英字の変換**: 
+
 #### `alphabet=full`
 半角英字、アンド記号（&）、カンマ（,）、ピリオド（.）を全角に変換します。
+
+
+**半角数字の変換**: 
 
 #### `number=tcy`
 半角数字を、3桁以下は縦中横で表示するHTMLに、4桁以上は全角数字に変換します。  
@@ -598,7 +625,7 @@ npm run novel-report
 
 ## Todo
 
-- [ ] 対応する形式を増やす（ハーメルン、アルファポリス、etc）
+- [x] 対応する形式を増やす（ハーメルン、アルファポリス、etc）
 - [x] EPUB変換時に全角スペースが消失する問題の対応
 - [x] 自動フォーマット機能（全角インデント挿入等）の実装
 - [x] 画像出力機能の実装
