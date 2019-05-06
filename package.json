@@ -47,7 +47,6 @@
   ],
   "dependencies": {
     "archiver": "^3.0.0",
-    "dotenv": "^8.0.0",
     "fs-extra": "^7.0.1",
     "jp-wrap": "^0.2.2",
     "kansuji": "^1.1.0",
