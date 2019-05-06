@@ -1,6 +1,6 @@
 {
   "name": "novel-builder",
-  "version": "0.4.3",
+  "version": "0.4.4",
   "description": "Web小説執筆補助ツール",
   "main": "index.js",
   "directories": {
@@ -47,11 +47,12 @@
   ],
   "dependencies": {
     "archiver": "^3.0.0",
-    "fs-extra": "^7.0.0",
+    "dotenv": "^8.0.0",
+    "fs-extra": "^7.0.1",
     "jp-wrap": "^0.2.2",
     "kansuji": "^1.1.0",
     "markdown-it": "^8.4.2",
-    "mustache": "^3.0.0",
-    "puppeteer": "^1.10.0"
+    "mustache": "^3.0.1",
+    "puppeteer": "^1.15.0"
   }
 }
